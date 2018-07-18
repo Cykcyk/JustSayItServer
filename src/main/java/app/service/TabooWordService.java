@@ -17,16 +17,32 @@ public class TabooWordService {
     }
 
     public void  setTabooWord(TabooWordResource tabooWordResource){
-        TabooWord tabooWord = new TabooWord(tabooWordResource.getMainWord(), tabooWordResource.getFirstTabooWord(), tabooWordResource.getSecondTabooWord(), tabooWordResource.getThirdTabooWord(),
-                                            tabooWordResource.getFourthTabooWord(), tabooWordResource.getFifthTabooWord(), tabooWordResource.getDifficultLevel());
+        TabooWord tabooWord = new TabooWord.TabooWordBuilder()
+                .withMainWord(tabooWordResource.getMainWord())
+                .withFirstTabooWord(tabooWordResource.getFirstTabooWord())
+                .withSecondTabooWord(tabooWordResource.getSecondTabooWord())
+                .withThirdTabooWord(tabooWordResource.getThirdTabooWord())
+                .withFourthTabooWord(tabooWordResource.getFourthTabooWord())
+                .withFifthTabooWord(tabooWordResource.getFifthTabooWord())
+                .withDifficultLevel(tabooWordResource.getDifficultLevel())
+                .build();
+
         tabooWordDao.addTabooWord(tabooWord);
 
     }
 
 
     public void updateTabooWord(Long id, TabooWordResource tabooWordResource){
-        TabooWord tabooWord = new TabooWord(id, tabooWordResource.getMainWord(), tabooWordResource.getFirstTabooWord(), tabooWordResource.getSecondTabooWord(), tabooWordResource.getThirdTabooWord(),
-                tabooWordResource.getFourthTabooWord(), tabooWordResource.getFifthTabooWord(), tabooWordResource.getDifficultLevel());
+        TabooWord tabooWord = new TabooWord.TabooWordBuilder()
+                .withMainWord(tabooWordResource.getMainWord())
+                .withFirstTabooWord(tabooWordResource.getFirstTabooWord())
+                .withSecondTabooWord(tabooWordResource.getSecondTabooWord())
+                .withThirdTabooWord(tabooWordResource.getThirdTabooWord())
+                .withFourthTabooWord(tabooWordResource.getFourthTabooWord())
+                .withFifthTabooWord(tabooWordResource.getFifthTabooWord())
+                .withDifficultLevel(tabooWordResource.getDifficultLevel())
+                .build();
+
         TabooWord oldTabooWord = tabooWordDao.getTabooWord(id);
         if(!oldTabooWord.equals(tabooWord)){
             tabooWordDao.update(tabooWord);

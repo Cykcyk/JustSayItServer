@@ -8,7 +8,8 @@ import java.util.Objects;
 @Table(name = "taboo_words")
 public class TabooWord {
 
-    @Id @GeneratedValue
+
+     @Id @GeneratedValue
     @Column(name = "taboo_word_id")
     private Long id;
 
@@ -34,27 +35,6 @@ public class TabooWord {
     private Integer difficultLevel;
 
     public TabooWord(){}
-
-    public TabooWord(String mainWord, String firstTabooWord, String secondTabooWord, String thirdTabooWord, String fourthTabooWord, String fifthTabooWord, Integer difficultLevel){
-        this.mainWord = mainWord;
-        this.firstTabooWord = firstTabooWord;
-        this.secondTabooWord = secondTabooWord;
-        this.thirdTabooWord = thirdTabooWord;
-        this.fourthTabooWord = fourthTabooWord;
-        this.fifthTabooWord = fifthTabooWord;
-        this.difficultLevel = difficultLevel;
-    }
-
-    public TabooWord(Long id, String mainWord, String firstTabooWord, String secondTabooWord, String thirdTabooWord, String fourthTabooWord, String fifthTabooWord, Integer difficultLevel){
-        this.id = id;
-        this.mainWord = mainWord;
-        this.firstTabooWord = firstTabooWord;
-        this.secondTabooWord = secondTabooWord;
-        this.thirdTabooWord = thirdTabooWord;
-        this.fourthTabooWord = fourthTabooWord;
-        this.fifthTabooWord = fifthTabooWord;
-        this.difficultLevel = difficultLevel;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -140,4 +120,78 @@ public class TabooWord {
     public void setDifficultLevel(Integer difficultLevel) {
         this.difficultLevel = difficultLevel;
     }
+
+    public static class TabooWordBuilder {
+
+        private Long id;
+        private String mainWord;
+        private String firstTabooWord;
+        private String secondTabooWord;
+        private String thirdTabooWord;
+        private String fourthTabooWord;
+        private String fifthTabooWord;
+        private Integer difficultLevel;
+
+        public TabooWordBuilder(){
+
+        }
+
+        public TabooWordBuilder withMainWord(String mainWord){
+            this.mainWord = mainWord;
+
+            return this;
+        }
+
+        public TabooWordBuilder withFirstTabooWord(String firstTabooWord){
+            this.firstTabooWord = firstTabooWord;
+
+            return this;
+        }
+
+        public TabooWordBuilder withSecondTabooWord(String secondTabooWord){
+            this.secondTabooWord = secondTabooWord;
+
+            return this;
+        }
+
+        public TabooWordBuilder withThirdTabooWord(String thirdTabooWord){
+            this.thirdTabooWord = thirdTabooWord;
+
+            return this;
+        }
+
+        public TabooWordBuilder withFourthTabooWord(String fourthTabooWord){
+            this.fourthTabooWord = fourthTabooWord;
+
+            return this;
+        }
+
+        public TabooWordBuilder withFifthTabooWord(String fifthTabooWord){
+            this.fifthTabooWord = fifthTabooWord;
+
+            return this;
+        }
+
+        public TabooWordBuilder withDifficultLevel(Integer difficultLevel){
+            this.difficultLevel = difficultLevel;
+
+            return this;
+        }
+
+        public TabooWord build(){
+            TabooWord tabooWord = new TabooWord();
+            tabooWord.id = this.id;
+            tabooWord.mainWord = this.mainWord;
+            tabooWord.firstTabooWord = this.firstTabooWord;
+            tabooWord.secondTabooWord = this.secondTabooWord;
+            tabooWord.thirdTabooWord = this.thirdTabooWord;
+            tabooWord.fourthTabooWord = this.fourthTabooWord;
+            tabooWord.fifthTabooWord = this.fifthTabooWord;
+            tabooWord.difficultLevel = this.difficultLevel;
+
+            return tabooWord;
+        }
+
+    }
+
 }
