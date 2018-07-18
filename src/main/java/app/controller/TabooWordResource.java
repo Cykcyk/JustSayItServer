@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.dao.TabooWord;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
@@ -24,6 +25,16 @@ public class TabooWordResource {
 
     public TabooWordResource() {
 
+    }
+
+    public TabooWordResource(TabooWord tabooWord){
+        this.mainWord = tabooWord.getMainWord();
+        this.firstTabooWord = tabooWord.getFirstTabooWord();
+        this.secondTabooWord = tabooWord.getSecondTabooWord();
+        this.thirdTabooWord = tabooWord.getThirdTabooWord();
+        this.fourthTabooWord = tabooWord.getFourthTabooWord();
+        this.fifthTabooWord = tabooWord.getFifthTabooWord();
+        this.difficultLevel = tabooWord.getDifficultLevel();
     }
 
     public String getMainWord() {

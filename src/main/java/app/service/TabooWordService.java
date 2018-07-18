@@ -6,6 +6,10 @@ import app.dao.TabooWordDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Vector;
+
 @Component
 public class TabooWordService {
 
@@ -47,6 +51,23 @@ public class TabooWordService {
         if(!oldTabooWord.equals(tabooWord)){
             tabooWordDao.update(tabooWord);
         }
+    }
+
+    public Vector<TabooWordResource> drawTabooWords(Integer size){
+        List <Long> listOfAvailableIds = shuffleAvailableIds();
+        TabooWord tempTabooWord;
+        Vector<TabooWordResource> shuffledTabooWords = new Vector<>();
+        for (int i = 0; i < size; i++){
+            tempTabooWord = getTabooWord(listOfAvailableIds.get(i));
+            shuffledTabooWords.add(new TabooWordResource(tempTabooWord));
+        }
+        return shuffledTabooWords;
+    }
+
+    private List <Long> shuffleAvailableIds(){
+        List <Long> availableIDs = tabooWordDao.getListOfIdsOfTabooWords();
+        Collections.shuffle(availableIDs);
+        return availableIDs;
     }
 
     public void deleteTabooWord(Long id){
