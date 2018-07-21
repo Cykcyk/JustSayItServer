@@ -41,55 +41,27 @@ public class TabooWordResource {
         return mainWord;
     }
 
-    public void setMainWord(String mainWord) {
-        this.mainWord = mainWord;
-    }
-
     public String getFirstTabooWord() {
         return firstTabooWord;
-    }
-
-    public void setFirstTabooWord(String firstTabooWord) {
-        this.firstTabooWord = firstTabooWord;
     }
 
     public String getSecondTabooWord() {
         return secondTabooWord;
     }
 
-    public void setSecondTabooWord(String secondTabooWord) {
-        this.secondTabooWord = secondTabooWord;
-    }
-
     public String getThirdTabooWord() {
         return thirdTabooWord;
-    }
-
-    public void setThirdTabooWord(String thirdTabooWord) {
-        this.thirdTabooWord = thirdTabooWord;
     }
 
     public String getFourthTabooWord() {
         return fourthTabooWord;
     }
 
-    public void setFourthTabooWord(String fourthTabooWord) {
-        this.fourthTabooWord = fourthTabooWord;
-    }
-
     public String getFifthTabooWord() {
         return fifthTabooWord;
     }
 
-    public void setFifthTabooWord(String fifthTabooWord) {
-        this.fifthTabooWord = fifthTabooWord;
-    }
-
     public Integer getDifficultLevel() {
         return difficultLevel;
-    }
-
-    public void setDifficultLevel(Integer difficultLevel) {
-        this.difficultLevel = difficultLevel;
     }
 }

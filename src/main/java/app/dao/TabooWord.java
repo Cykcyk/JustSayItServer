@@ -31,10 +31,13 @@ public class TabooWord {
     @Column(name = "fifth_taboo_word")
     private String fifthTabooWord;
 
+    @Column(name = "category")
+    private String category;
+
     @Column(name = "difficult_level")
     private Integer difficultLevel;
 
-    public TabooWord(){}
+    private TabooWord(){}
 
     @Override
     public boolean equals(Object o) {
@@ -48,77 +51,50 @@ public class TabooWord {
                 Objects.equals(thirdTabooWord, tabooWord.thirdTabooWord) &&
                 Objects.equals(fourthTabooWord, tabooWord.fourthTabooWord) &&
                 Objects.equals(fifthTabooWord, tabooWord.fifthTabooWord) &&
+                Objects.equals(category, tabooWord.category) &&
                 Objects.equals(difficultLevel, tabooWord.difficultLevel);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, mainWord, firstTabooWord, secondTabooWord, thirdTabooWord, fourthTabooWord, fifthTabooWord, difficultLevel);
+        return Objects.hash(id, mainWord, firstTabooWord, secondTabooWord, thirdTabooWord, fourthTabooWord, fifthTabooWord, category, difficultLevel);
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getMainWord() {
         return mainWord;
-    }
-
-    public void setMainWord(String mainWord) {
-        this.mainWord = mainWord;
     }
 
     public String getFirstTabooWord() {
         return firstTabooWord;
     }
 
-    public void setFirstTabooWord(String firstTabooWord) {
-        this.firstTabooWord = firstTabooWord;
-    }
-
     public String getSecondTabooWord() {
         return secondTabooWord;
-    }
-
-    public void setSecondTabooWord(String secondTabooWord) {
-        this.secondTabooWord = secondTabooWord;
     }
 
     public String getThirdTabooWord() {
         return thirdTabooWord;
     }
 
-    public void setThirdTabooWord(String thirdTabooWord) {
-        this.thirdTabooWord = thirdTabooWord;
-    }
-
     public String getFourthTabooWord() {
         return fourthTabooWord;
-    }
-
-    public void setFourthTabooWord(String fourthTabooWord) {
-        this.fourthTabooWord = fourthTabooWord;
     }
 
     public String getFifthTabooWord() {
         return fifthTabooWord;
     }
 
-    public void setFifthTabooWord(String fifthTabooWord) {
-        this.fifthTabooWord = fifthTabooWord;
+    public String getCategory(){
+        return category;
     }
 
     public Integer getDifficultLevel() {
         return difficultLevel;
-    }
-
-    public void setDifficultLevel(Integer difficultLevel) {
-        this.difficultLevel = difficultLevel;
     }
 
     public static class TabooWordBuilder {
@@ -130,6 +106,7 @@ public class TabooWord {
         private String thirdTabooWord;
         private String fourthTabooWord;
         private String fifthTabooWord;
+        private String category;
         private Integer difficultLevel;
 
         public TabooWordBuilder(){
@@ -172,6 +149,12 @@ public class TabooWord {
             return this;
         }
 
+        public TabooWordBuilder withCategory(String category){
+            this.category = category;
+
+            return  this;
+        }
+
         public TabooWordBuilder withDifficultLevel(Integer difficultLevel){
             this.difficultLevel = difficultLevel;
 
@@ -187,6 +170,7 @@ public class TabooWord {
             tabooWord.thirdTabooWord = this.thirdTabooWord;
             tabooWord.fourthTabooWord = this.fourthTabooWord;
             tabooWord.fifthTabooWord = this.fifthTabooWord;
+            tabooWord.category = this.category;
             tabooWord.difficultLevel = this.difficultLevel;
 
             return tabooWord;

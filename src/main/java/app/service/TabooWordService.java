@@ -6,9 +6,10 @@ import app.dao.TabooWordDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Vector;
+import java.util.Optional;
 
 @Component
 public class TabooWordService {
@@ -53,19 +54,18 @@ public class TabooWordService {
         }
     }
 
-    public Vector<TabooWordResource> drawTabooWords(Integer size){
-        List <Long> listOfAvailableIds = shuffleAvailableIds();
-        TabooWord tempTabooWord;
-        Vector<TabooWordResource> shuffledTabooWords = new Vector<>();
-        for (int i = 0; i < size; i++){
-            tempTabooWord = getTabooWord(listOfAvailableIds.get(i));
-            shuffledTabooWords.add(new TabooWordResource(tempTabooWord));
+    public List<TabooWordResource> drawTabooWords(Integer size, List<String> categories, Integer difficultLevel){
+        List<Long> shuffledIds = shuffleAvailableIds(categories, difficultLevel);
+        List<TabooWord> tabooWords = tabooWordDao.getTabooWords(shuffledIds.subList(0 , size));
+        List<TabooWordResource> shuffledTabooWords = new ArrayList<>();
+        for(TabooWord i: tabooWords){
+            shuffledTabooWords.add(new TabooWordResource(i));
         }
         return shuffledTabooWords;
     }
 
-    private List <Long> shuffleAvailableIds(){
-        List <Long> availableIDs = tabooWordDao.getListOfIdsOfTabooWords();
+    private List <Long> shuffleAvailableIds(List<String> categories, Integer difficultLevel){
+        List <Long> availableIDs = tabooWordDao.getListOfIds(categories, difficultLevel);
         Collections.shuffle(availableIDs);
         return availableIDs;
     }

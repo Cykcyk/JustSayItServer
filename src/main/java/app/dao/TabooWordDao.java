@@ -5,7 +5,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 @Repository
@@ -22,6 +24,10 @@ public class TabooWordDao {
         return entityManager.find(TabooWord.class, tabooWordId);
     }
 
+    public List<TabooWord> getTabooWords(List<Long> listOfIds){
+       return entityManager.createQuery("from TabooWord tb where id in :listOfIds").setParameter("listOfIds", listOfIds).getResultList();
+    }
+
     public void update(TabooWord tabooWord){
         entityManager.merge(tabooWord);
     }
@@ -30,8 +36,17 @@ public class TabooWordDao {
         entityManager.remove(getTabooWord(tabooWordId));
     }
 
-    public List <Long> getListOfIdsOfTabooWords(){
-        List <Long> availableIDs = entityManager.createQuery("select  id from TabooWord").getResultList();
+    public List <Long> getListOfIds(List<String> categories, Integer difficultLevel){
+        List<Long> availableIDs;
+        if (categories != null) {
+            availableIDs = entityManager.createQuery("select id from TabooWord where category in :categories and difficultLevel >= :difficultLevel")
+                    .setParameter("categories", categories).setParameter("difficultLevel", difficultLevel).getResultList();
+            }
+            else {
+            availableIDs = entityManager.createQuery("select id from TabooWord where difficultLevel >= :difficultLevel")
+                                        .setParameter("difficultLevel", difficultLevel).getResultList();
+        }
         return availableIDs;
     }
 }
+

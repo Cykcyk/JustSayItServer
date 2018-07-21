@@ -6,7 +6,8 @@ import app.service.TabooWordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Vector;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/tabooWords")
@@ -38,9 +39,10 @@ public class TabooWordController {
         tabooWordService.updateTabooWord(id, tabooWordResource);
     }
 
-    @RequestMapping("/draw")
-    public Vector<TabooWordResource> drawTabooWords (@RequestParam ("size") Integer size){
-        return tabooWordService.drawTabooWords(size);
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public List<TabooWordResource> drawTabooWords (@RequestParam ("size") Integer size,
+                                                   @RequestParam (value = "category", required = false) List <String> category,
+                                                   @RequestParam (value = "difficult", required = false, defaultValue = "0") Integer difficultLevel){
+        return tabooWordService.drawTabooWords(size, category, difficultLevel);
     }
-
 }
