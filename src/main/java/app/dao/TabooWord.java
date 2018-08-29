@@ -9,38 +9,39 @@ import java.util.Objects;
 public class TabooWord {
 
 
-     @Id @GeneratedValue
-    @Column(name = "taboo_word_id")
-    private Long id;
+     @Id
+     @GeneratedValue
+     @Column(name = "taboo_word_id")
+     private Long id;
 
-    @Column(name = "main_word")
-    private String mainWord;
+     @Column(name = "main_word")
+     private String mainWord;
 
-    @Column(name = "first_taboo_word")
-    private String firstTabooWord;
+     @Column(name = "first_taboo_word")
+     private String firstTabooWord;
 
-    @Column(name = "second_taboo_word")
-    private String secondTabooWord;
+     @Column(name = "second_taboo_word")
+     private String secondTabooWord;
 
-    @Column(name = "third_taboo_word")
-    private String thirdTabooWord;
+     @Column(name = "third_taboo_word")
+     private String thirdTabooWord;
 
-    @Column(name = "fourth_taboo_word")
-    private String fourthTabooWord;
+     @Column(name = "fourth_taboo_word")
+     private String fourthTabooWord;
 
-    @Column(name = "fifth_taboo_word")
-    private String fifthTabooWord;
+     @Column(name = "fifth_taboo_word")
+     private String fifthTabooWord;
 
-    @Column(name = "category")
-    private String category;
+     @Column(name = "category")
+     private String category;
 
-    @Column(name = "difficult_level")
-    private Integer difficultLevel;
+     @Column(name = "difficult_level")
+     private Integer difficultLevel;
 
-    private TabooWord(){}
+     private TabooWord(){}
 
-    @Override
-    public boolean equals(Object o) {
+     @Override
+     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TabooWord tabooWord = (TabooWord) o;

@@ -23,7 +23,7 @@ public class TabooWordResource {
         this.difficultLevel = difficultLevel;
     }
 
-    public TabooWordResource() {
+    public TabooWordResource(String mainWord, String firstTabooWord, String secondTabooWord, String thirdTabooWord, String fourthTabooWord, String fifthTabooWord, String category, Integer difficultLevel) {
 
     }
 

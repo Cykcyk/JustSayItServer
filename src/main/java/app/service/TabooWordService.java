@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class TabooWordService {
@@ -21,7 +20,7 @@ public class TabooWordService {
         return tabooWordDao.getTabooWord(id);
     }
 
-    public void  setTabooWord(TabooWordResource tabooWordResource){
+    public void addTabooWord(TabooWordResource tabooWordResource){
         TabooWord tabooWord = new TabooWord.TabooWordBuilder()
                 .withMainWord(tabooWordResource.getMainWord())
                 .withFirstTabooWord(tabooWordResource.getFirstTabooWord())

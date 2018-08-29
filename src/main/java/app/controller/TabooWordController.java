@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/tabooWords")
@@ -21,17 +20,17 @@ public class TabooWordController {
         TabooWord tabooWord = tabooWordService.getTabooWord(id);
         return new TabooWordResource(tabooWord.getMainWord(), tabooWord.getFirstTabooWord(),
                 tabooWord.getSecondTabooWord(), tabooWord.getThirdTabooWord(),
-                tabooWord.getFourthTabooWord(), tabooWord.getFifthTabooWord(), tabooWord.getDifficultLevel());
+                tabooWord.getFourthTabooWord(), tabooWord.getFifthTabooWord(), tabooWord.getCategory(), tabooWord.getDifficultLevel());
     }
 
-    @RequestMapping(value = "/{id}", method =  RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method =  RequestMethod.DELETE)    
     public void deleteTabooWord(@PathVariable Long id){
         tabooWordService.deleteTabooWord(id);
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public void addTabooWord(@RequestBody TabooWordResource tabooWordResource){
-        tabooWordService.setTabooWord(tabooWordResource);
+        tabooWordService.addTabooWord(tabooWordResource);
     }
 
     @RequestMapping(value = "/{id}", method =  RequestMethod.PUT)
