@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/tabooWords")
 public class TabooWordController {
@@ -18,12 +19,14 @@ public class TabooWordController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public TabooWordResource getTabooWord(@PathVariable Long id){
         TabooWord tabooWord = tabooWordService.getTabooWord(id);
-        return new TabooWordResource(tabooWord.getMainWord(), tabooWord.getFirstTabooWord(),
-                tabooWord.getSecondTabooWord(), tabooWord.getThirdTabooWord(),
-                tabooWord.getFourthTabooWord(), tabooWord.getFifthTabooWord(), tabooWord.getCategory(), tabooWord.getDifficultLevel());
+//        return new TabooWordResource(tabooWord.getMainWord(), tabooWord.getFirstTabooWord(),
+//                tabooWord.getSecondTabooWord(), tabooWord.getThirdTabooWord(),
+//                tabooWord.getFourthTabooWord(), tabooWord.getFifthTabooWord(), tabooWord.getCategory(), tabooWord.getDifficultLevel());
+        return new TabooWordResource(tabooWord);
+
     }
 
-    @RequestMapping(value = "/{id}", method =  RequestMethod.DELETE)    
+    @RequestMapping(value = "/{id}", method =  RequestMethod.DELETE)
     public void deleteTabooWord(@PathVariable Long id){
         tabooWordService.deleteTabooWord(id);
     }
